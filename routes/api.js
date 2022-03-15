@@ -37,13 +37,6 @@ router.post("/recipe/edit/:id", async (req, res) => {
     })
       .then((prevState) => res.json(prevState))
       .catch((err) => res.status(400).json("Error: " + err));
-
-    await post.save();
-    res.send(post);
-  } catch {
-    res.status(404);
-    res.send({ error: "Post doesn't exist!" });
-  }
 });
 
 router.delete("/recipes/:id", (req, res, next) => {
