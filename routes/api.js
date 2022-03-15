@@ -30,10 +30,7 @@ router.post("/recipes", (req, res, next) => {
 
 router.post("/recipe/edit/:id", async (req, res) => {
   let updates = req.body;
-  Recipe.findByIdAndUpdate(req.body.id);
-  const post = await Recipe.findOne({ _id: req.params.id }, updates, {
-    new: true,
-  })
+  Recipe.findByIdAndUpdate(req.body.id, updates, { new: true })
     .then((prevState) => res.json(prevState))
     .catch((err) => res.status(400).json("Error: " + err));
 });
