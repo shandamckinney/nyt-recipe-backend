@@ -28,7 +28,7 @@ router.post("/recipes", (req, res, next) => {
   }
 });
 
-router.patch("/recipe/:id", async (req, res) => {
+router.patch("/recipe/edit/:id", async (req, res) => {
   try {
     const post = await Recipe.findOne({ _id: req.params.id });
 
