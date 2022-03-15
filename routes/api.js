@@ -11,7 +11,7 @@ router.get("/recipes", (req, res, next) => {
 
 router.get("/recipe/:id", (req, res, next) => {
   // This will return all the data, exposing only the id and action field to the client
-  Recipe.find()
+  Recipe.findOne()
     .then((data) => res.json(data))
     .catch(next);
 });
