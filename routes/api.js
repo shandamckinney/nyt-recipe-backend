@@ -11,7 +11,7 @@ router.get("/recipes", (req, res, next) => {
 
 router.get("/recipe/:id", (req, res, next) => {
   // This will return all the data, exposing only the id and action field to the client
-  Recipe.findOne()
+  Recipe.findById(req.params.id)
     .then((data) => res.json(data))
     .catch(next);
 });
@@ -29,14 +29,13 @@ router.post("/recipes", (req, res, next) => {
 });
 
 router.post("/recipe/edit/:id", async (req, res) => {
-  let updates = req.body;
-  Recipe.findByIdAndUpdate(req.body.id, updates, { new: true })
+  Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((prevState) => res.json(prevState))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.delete("/recipes/:id", (req, res, next) => {
-  Recipe.findOneAndDelete({ _id: req.params.id })
+  Recipe.findOneAndDelete(req.params.id)
     .then((data) => res.json(data))
     .catch(next);
 });
